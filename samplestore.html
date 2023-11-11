@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopkeeper Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        
+
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        form button {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+        } 
+
+        form button:hover {
+            background-color: #555;
+        }
+        
+            
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Ganesh electronics</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showDashboard()">Shopkeeper Dashboard</a></li>
+            <li><a href="#" onclick="showProductListing()">Product Listing</a></li>
+        </ul>
+    </nav>
+    <main>
+        <form id="addProductForm">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productDescription">Product Description:</label>
+            <input type="text" id="productDescription" name="productDescription" required>
+
+            <label for="productPrice">Product Price:</label>
+            <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+
+            <label for="productQuantity">Product Quantity:</label>
+            <input type="number" id="productQuantity" name="productQuantity" required>
+
+            <label for="productImage">Product Image URL:</label>
+            <input type="text" id="productImage" name="productImage" required>
+
+            <button type="button" onclick="addProduct()">Add Product</button>
+        </form>
+       
+    </main>
+
+    <script>
+        function addProduct() {
+            const productName = document.getElementById('productName').value;
+            const productDescription = document.getElementById('productDescription').value;
+            const productPrice = document.getElementById('productPrice').value;
+            const productQuantity = document.getElementById('productQuantity').value;
+            const productImage = document.getElementById('productImage').value;
+
+            // Here you would typically send this data to a server using AJAX or fetch
+            // For simplicity, we'll just log the data to the console.
+            console.log("New Product Added:", {
+                Name: productName,
+                Description: productDescription,
+                Price: productPrice,
+                Quantity: productQuantity,
+                Image: productImage
+            });
+            displayProductImage(productImage);
+
+            // Provide feedback to the user
+            document.getElementById('feedbackMessage').textContent = 'Product added successfully';
+
+
+            // Optionally, you can clear the form fields after adding a product
+            document.getElementById('productName').value = '';
+            document.getElementById('productDescription').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productQuantity').value = '';
+            document.getElementById('productImage').value = '';
+        }
+        function isValidURL(url) {
+            // Simple URL validation
+            const urlPattern = /^https?:\/\/\S+$/;
+            return urlPattern.test(url);
+        }
+
+        function displayProductImage(imageUrl) {
+            // Create an image element
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl;
+            imageElement.alt = 'Product Image';
+
+            // Append the image element to the container
+            const imageContainer = document.getElementById('productImageContainer');
+            imageContainer.innerHTML = ''; // Clear previous content
+            imageContainer.appendChild(imageElement);
+        }
+    </script>
+</body>
+</html>
