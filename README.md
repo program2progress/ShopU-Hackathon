@@ -1,4 +1,3 @@
-# E-commerce-Design
+Shop U website
 
-You can check it like https://ritikkumar03.github.io/E-commerce-Design/
-open for suggestions and commits
+Spacesprint Hackathon
